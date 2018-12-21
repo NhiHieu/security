@@ -34,11 +34,11 @@ server.post('/',(req, res)=>{
     const {username, password} = req.body;
     console.log(username +"  " + password);
     (async function query(){
-        // if(username == undefined || typeof username !== 'String' || password == undefined || typeof password !== 'String'){
+        if(username == undefined || typeof username !== 'String' || password == undefined || typeof password !== 'String'){
             
-        //     res.redirect('/');
-        // }
-        //else{
+            res.redirect('/');
+        }
+        else{
         await Users.find({username: username, password: password}, (err, user)=>{
             if(err)
                 console.log(err)
@@ -49,7 +49,7 @@ server.post('/',(req, res)=>{
                 res.redirect('/profile');
             }
         })
-    //}
+    }
     }())
 })
 server.get('/profile', (req, res)=>{

@@ -23,7 +23,7 @@
 
                         <%data.comment.forEach( function ( commentData ){ %>
                                  
-                            <p><%= commentData.author %> : <%= commentData.description %> </p>
+                            <p><%= commentData.author %> : <%- commentData.description %> </p>
                                            
                         <% }); %>
                     

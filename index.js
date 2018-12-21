@@ -88,8 +88,8 @@ function escape(str){
 
 io.on('connection', function(socket){
     socket.on('chat message', function(data){
-        data.username = escape(data.username);
-        data.description = escape(data.description);
+        // data.username = escape(data.username);
+        // data.description = escape(data.description);
         const comment = new Comments({author: data.username, description: data.msg});
         comment.save();
         io.emit('chat message', data.msg);
