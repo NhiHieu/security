@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Comments list</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="/comment.css" />
+        
+</head>
+<body>
+        <h1 class="main-content">Comment list</h1>
+        <div class="container">
+
+        <form action="">
+            <input id="m" autocomplete="off" /><button>Send</button>
+           
+        </form>
+        
+            <ul id="messages">
+                
+                 <%   if(typeof data.comment != 'underfined' && data.comment != null){%>    
+
+                        <%data.comment.forEach( function ( commentData ){ %>
+                           
+                            <p><%= commentData.author %> : <%= escape(commentData.description) %> </p>
+                                           
+                        <% }); %>
+                    
+                     <%}%>
+            </ul>
+            
+        </div>
+        <div class="container">
+	    </div>
+        
+</body>
+<script src="/socket.io/socket.io.js"></script>
+    <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+    
+    
+	<script>
+    $(function check(){
+        var radio = document.getElementByName('optradio');
+        if(radio[0].checked)
+            return true;
+        return fasle;
+    })
+    $(function escape(str){
+    return String(str)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&#62;')
+      .replace(/>/g, '&gt;')
+      .replace(/'/g, '&#39;')
+      .replace(/"/g, '&quot;');
+  })
+  $(function () {
+    let username = "<%=data.username%>";  
+    var socket = io();
+    let res = true;
+    $('form').submit(function(){
+        var check = document.getElementById('security');
+        if(!check.checked){
+            res = false;
+        }
+      data = {
+          'msg':$('#m').val(),
+          'username': username,
+          res: res
+      }
+
+      socket.emit('chat message', data);
+      $('#m').val('');
+      return false;
+    });
+    socket.on('chat message', function(msg){
+      $('#messages').append($('<li>').text(username+" :"+escape(msg)));
+    });
+  });
+</script>
+</html>
