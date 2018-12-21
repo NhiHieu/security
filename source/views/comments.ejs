@@ -22,8 +22,8 @@
                  <%   if(typeof data.comment != 'underfined' && data.comment != null){%>    
 
                         <%data.comment.forEach( function ( commentData ){ %>
-                           
-                            <p><%= commentData.author %> : <%= escape(commentData.description) %> </p>
+                                 
+                            <p><%= commentData.author %> : <%= commentData.description %> </p>
                                            
                         <% }); %>
                     

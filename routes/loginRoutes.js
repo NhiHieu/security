@@ -16,13 +16,33 @@ function router(){
             res.render('login');
         })
     
-    loginRoutes.route('/')
-        .post(passport.authenticate('local',
-            {
-            successRedirect: '/comments',
-            failureRedirect: '/'
-        }))
+    // loginRoutes.route('/')
+    //     .post((req, res) =>{
+    //         //const {username, password} = req.body;
+    //         const username = "sd";
+    //         const password = "fs";
+    //         console.log("username:"+username);
+    //         (async function query(){
+    //             const user = await Users.find({username: username, password: password});
+    //             if(!user)
+    //                 res.redirect('/')
+    //             else{
+    //                 req.login(user, (err)=>{
+    //                     if (err) { console.log(err) }
+    //                     res.locals.user = user;
+    //                     return res.redirect('/comments');
+    //                 });
+    //             }
+    //         }())
+            
+    //     })
 
+    loginRoutes.route('/')
+    .post(passport.authenticate('local',
+        {
+        successRedirect: '/comments',
+        failureRedirect: '/'
+    }))
 
 
 //Handle signup

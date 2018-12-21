@@ -15,8 +15,7 @@ function router(){
             console.log("user:" + req.user);
             data ={
                 comment: comments,
-                username: req.user.username,
-                secure: req.user.secure
+                username: req.user.username
             }
             
             res.render('comments', {data: data})
