@@ -92,7 +92,7 @@ io.on('connection', function(socket){
         data.description = escape(data.description);
         const comment = new Comments({author: data.username, description: data.msg});
         comment.save();
-        io.emit('chat message', data.msg, data.res);
+        io.emit('chat message', data.msg);
       });
 })
 

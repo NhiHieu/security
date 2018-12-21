@@ -38,14 +38,7 @@
 <script src="/socket.io/socket.io.js"></script>
     <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
     
-    
 	<script>
-    $(function check(){
-        var radio = document.getElementByName('optradio');
-        if(radio[0].checked)
-            return true;
-        return fasle;
-    })
     $(function escape(str){
     return String(str)
       .replace(/&/g, '&amp;')
@@ -59,14 +52,9 @@
     var socket = io();
     let res = true;
     $('form').submit(function(){
-        var check = document.getElementById('security');
-        if(!check.checked){
-            res = false;
-        }
       data = {
           'msg':$('#m').val(),
           'username': username,
-          res: res
       }
 
       socket.emit('chat message', data);
@@ -74,7 +62,7 @@
       return false;
     });
     socket.on('chat message', function(msg){
-      $('#messages').append($('<li>').text(username+" :"+escape(msg)));
+      $('#messages').append($('<p>').text(username+" :"+(msg)));
     });
   });
 </script>

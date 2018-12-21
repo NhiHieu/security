@@ -9,11 +9,11 @@ module.exports = function passportConfig(app){
     //store user in session
     passport.serializeUser((user, done) =>{
         console.log("Inside serialize user!")
-        done(null, user);
+        done(null, user._id);
     });
 
     //Retrieve user from session
-    passport.deserializeUser((user, done) =>{
+    passport.deserializeUser((id, done) =>{
         //find user by Id
         console.log("Inside deserialize user!")
         Users.findById(id, (err, cb) =>{
